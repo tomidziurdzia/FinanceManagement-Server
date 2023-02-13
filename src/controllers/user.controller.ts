@@ -140,6 +140,7 @@ const newPassword = async (req: Request, res: Response) => {
 // Obtener perfil del usuario
 const getUser = async (req: RequestWithUser, res: Response) => {
   const { user } = req;
+  console.log(user);
   user!.token = generateJWT(user!._id);
   res.json(user);
 };
