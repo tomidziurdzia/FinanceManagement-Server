@@ -36,6 +36,10 @@ const userSchema = new Schema<UserProps>(
       type: Boolean,
       default: false,
     },
+    picture: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

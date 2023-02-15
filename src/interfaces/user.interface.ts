@@ -10,6 +10,7 @@ export interface UserProps {
   token: string;
   confirmed: boolean;
   googleAcctount: boolean;
+  picture: string;
   checkPassword(password: string): boolean;
 }
 
