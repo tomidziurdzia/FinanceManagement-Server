@@ -10,6 +10,7 @@ export interface RequestExt extends Request {
 
 const getCategories = async (req: RequestExt, res: Response) => {
   const categories = await Category.find().where("user").equals(req.user);
+  console.log(req.user);
   res.json(categories);
 };
 

@@ -11,7 +11,7 @@ const categorySchema = new Schema<CategoryProps>(
     type: {
       type: String,
       required: true,
-      enum: ["Income", "Expenses"],
+      enum: ["Income", "Expense"],
     },
     user: {
       type: Schema.Types.ObjectId,

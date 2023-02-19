@@ -4,7 +4,7 @@ import { CategoryProps } from "./category.interface";
 export interface TransactionProps {
   _id?: string;
   name: string;
-  type: "Income" | "Expenses";
+  type: "Income" | "Expense";
   user: UserProps;
   category: CategoryProps;
   amount: number;
