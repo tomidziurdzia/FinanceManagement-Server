@@ -3,6 +3,7 @@ import User from "../models/User";
 import generateJWT from "../helpers/generateJWT";
 import generateToken from "../helpers/generateToken";
 import { RequestWithUser } from "../interfaces/user.interface";
+import { googleVerify } from "../helpers/googleVerify";
 
 const createUser = async (req: Request, res: Response) => {
   // Prevenir usuarios duplicados
@@ -145,6 +146,34 @@ const getUser = async (req: RequestWithUser, res: Response) => {
   res.json(user);
 };
 
+// Login con google
+const loginWithGoogle = async (req: Request, res: Response) => {
+  const { id_token } = req.body;
+
+  try {
+    const { name, surname, picture, email } = await googleVerify(id_token);
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      const data = {
+        name,
+        surname,
+        picture,
+        email,
+        confirmed: true,
+        googleAcctount: true,
+      };
+      user = new User(data);
+      await user.save();
+    }
+    user.token = generateJWT(user!._id);
+    res.json(user);
+  } catch (error: any) {
+    return res.status(403).json({ msg: error.message });
+  }
+};
+
 export {
   createUser,
   confirmToken,
@@ -153,4 +182,5 @@ export {
   checkToken,
   newPassword,
   getUser,
+  loginWithGoogle,
 };
