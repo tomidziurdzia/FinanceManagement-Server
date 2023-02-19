@@ -163,6 +163,7 @@ const loginWithGoogle = async (req: Request, res: Response) => {
         email,
         confirmed: true,
         googleAcctount: true,
+        password: "1",
       };
       user = new User(data);
       await user.save();
