@@ -23,6 +23,12 @@ const categorySchema = new Schema<CategoryProps>(
         ref: "Transaction",
       },
     ],
+    color: {
+      type: String,
+    },
+    icon: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -10,7 +10,6 @@ export interface RequestExt extends Request {
 
 const getCategories = async (req: RequestExt, res: Response) => {
   const categories = await Category.find().where("user").equals(req.user);
-  console.log(req.user);
   res.json(categories);
 };
 
@@ -62,6 +61,16 @@ const getCategory = async (req: RequestExt, res: Response) => {
 
 const editCategory = async (req: RequestExt, res: Response) => {
   const { id } = req.params;
+  const { name } = req.body;
+  const categoryExist = await Category.findOne({ name })
+    .where("user")
+    .equals(req.user);
+
+  // Compruebo que ya no exista otra categoria con ese nombre
+  if (categoryExist) {
+    const error = new Error("Category already created");
+    return res.status(400).json({ msg: error.message });
+  }
 
   //Verifico que el id tenga la longitud correcta
   if (id.length !== 24) {
@@ -79,6 +88,8 @@ const editCategory = async (req: RequestExt, res: Response) => {
 
     category!.name = req.body.name || category!.name;
     category!.type = req.body.type || category!.type;
+    category!.color = req.body.color || category!.color;
+    category!.icon = req.body.icon || category!.icon;
 
     await category!.save();
     res.json(category);

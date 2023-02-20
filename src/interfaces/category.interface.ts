@@ -7,4 +7,6 @@ export interface CategoryProps {
   type: "Income" | "Expense";
   user: UserProps;
   transactions: TransactionProps[];
+  color: string;
+  icon: string;
 }
