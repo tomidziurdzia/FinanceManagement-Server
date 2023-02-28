@@ -37,5 +37,4 @@ const categorySchema = new Schema<CategoryProps>(
 );
 
 const Category = model<CategoryProps>("Category", categorySchema);
-
 export default Category;

@@ -1,12 +1,13 @@
 import { UserProps } from "./user.interface";
 import { CategoryProps } from "./category.interface";
+import { AccountProps } from "./account.interface";
 
 export interface TransactionProps {
   _id?: string;
-  name: string;
+  description?: string;
   type: "Income" | "Expense";
   user: UserProps;
   category: CategoryProps;
+  account: AccountProps;
   amount: number;
-  description?: string;
 }
