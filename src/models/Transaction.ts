@@ -3,6 +3,11 @@ import { TransactionProps } from "../interfaces/transaction.interface";
 
 const transactionSchema = new Schema<TransactionProps>(
   {
+    date: {
+      type: Date,
+      required: true,
+      default: Date.now(),
+    },
     description: {
       type: String,
       required: true,

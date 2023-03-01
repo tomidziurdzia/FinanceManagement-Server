@@ -48,12 +48,13 @@ const createTransaction = async (req: RequestExt, res: Response) => {
 
   try {
     const newTransaction = new Transaction(req.body);
+    console.log(newTransaction);
     newTransaction.user = req.user?._id;
-    accountExist.transactions.push(newTransaction._id as any);
-    await accountExist.save();
+    accountExist!.transactions.push(newTransaction._id as any);
+    await accountExist!.save();
 
-    categoryExist.transactions.push(newTransaction._id as any);
-    await categoryExist.save();
+    categoryExist!.transactions.push(newTransaction._id as any);
+    await categoryExist!.save();
 
     await newTransaction.save();
     res.json(newTransaction);

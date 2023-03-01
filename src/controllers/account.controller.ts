@@ -7,7 +7,10 @@ export interface RequestExt extends Request {
 }
 
 const getAccounts = async (req: RequestExt, res: Response) => {
-  const accounts = await Account.find().where("user").equals(req.user);
+  const accounts = await Account.find()
+    .populate({ path: "transactions", select: "amount type" })
+    .where("user")
+    .equals(req.user);
   res.json(accounts);
 };
 

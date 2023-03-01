@@ -9,7 +9,10 @@ export interface RequestExt extends Request {
 }
 
 const getCategories = async (req: RequestExt, res: Response) => {
-  const categories = await Category.find().where("user").equals(req.user);
+  const categories = await Category.find()
+    .populate({ path: "transactions", select: "amount type" })
+    .where("user")
+    .equals(req.user);
   res.json(categories);
 };
 

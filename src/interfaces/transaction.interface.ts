@@ -4,6 +4,7 @@ import { AccountProps } from "./account.interface";
 
 export interface TransactionProps {
   _id?: string;
+  date: Date;
   description?: string;
   type: "Income" | "Expense";
   user: UserProps;
