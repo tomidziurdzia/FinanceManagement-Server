@@ -16,7 +16,7 @@ const transactionSchema = new Schema<TransactionProps>(
     type: {
       type: String,
       required: true,
-      enum: ["Income", "Expense"],
+      enum: ["Income", "Expense", "Transfer"],
     },
     user: {
       type: Schema.Types.ObjectId,
